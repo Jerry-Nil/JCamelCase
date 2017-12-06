@@ -55,4 +55,4 @@ class JCamelCaseCommand(sublime_plugin.TextCommand):
 				elif re.match('[A-Z][a-z\d]*(?:[A-Z][a-z\d]*)?', regionStr[0:1]):
 					transformedStr = pascalToUnderscore(regionStr)
 
-				view.replace(edit, sels[index], transformedStr)
+				view.replace(edit, region, transformedStr)
