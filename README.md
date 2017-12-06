@@ -3,8 +3,19 @@
 
 ## Usage
 
-macOS `command` + `shift` + `u`
-Windows/Linux `alt` + `shift` + `u`
+select some words and press keys
+
+* macOS `command` + `shift` + `u`
+
+* Windows/Linux `alt` + `shift` + `u`
+
+`hello_world` -> `helloWorld`
+
+`helloWorld` -> `HelloWorld`
+
+`HelloWorld` -> `hello_world`
+
+## Info
 
 * [@Jerry](mailto:jerry.hz.china@gmail.com)
 
