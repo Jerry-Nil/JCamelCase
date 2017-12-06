@@ -44,7 +44,8 @@ class JCamelCaseCommand(sublime_plugin.TextCommand):
 		selContent = ''
 		if(len(sels)) > 0 :
 			for index in range(len(sels)):
-				regionStr = view.substr(sels[index])
+				region = view.word(sels[index])
+				regionStr = view.substr(region)
 				transformedStr = ''
 
 				if regionStr.find('_') >= 0 :
