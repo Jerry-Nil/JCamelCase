@@ -22,20 +22,20 @@ def underscoreToCamelCase(one_string, space_character):
 
 	return hump_string
 
-def camelCaseToPascal(inputStr):
-	if len(inputStr) == 1 :
-		return inputStr.capitalize()
+def camelCaseToPascal(input_str):
+	if len(input_str) == 1 :
+		return input_str.capitalize()
 
-	outputStr = inputStr[0:1].capitalize() + inputStr[1:]
+	outputStr = input_str[0:1].capitalize() + input_str[1:]
 	return outputStr
 
 def toUnder(matched):
 	_str = str(matched.group('value'))
 	return _str.lower() + '_'
 
-def pascalToUnderscore(inputStr):
-	tmpStr = re.sub(r'(?P<value>[A-Z][a-z\d]*)', toUnder, inputStr)
-	return tmpStr[0:len(tmpStr) - 1]
+def pascalToUnderscore(input_str):
+	tmp_str = re.sub(r'(?P<value>[A-Z][a-z\d]*)', toUnder, input_str)
+	return tmp_str[0:len(tmp_str) - 1]
 
 class JCamelCaseCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
@@ -45,14 +45,14 @@ class JCamelCaseCommand(sublime_plugin.TextCommand):
 		if(len(sels)) > 0 :
 			for index in range(len(sels)):
 				region = view.word(sels[index])
-				regionStr = view.substr(region)
-				transformedStr = ''
+				region_str = view.substr(region)
+				transformed_str = ''
 
-				if regionStr.find('_') >= 0 :
-					transformedStr = underscoreToCamelCase(regionStr, '_')
-				elif re.match('[a-z][a-z\d]*(?:[A-Z][a-z\d]*)?', regionStr[0:1]):
-					transformedStr = camelCaseToPascal(regionStr)
-				elif re.match('[A-Z][a-z\d]*(?:[A-Z][a-z\d]*)?', regionStr[0:1]):
-					transformedStr = pascalToUnderscore(regionStr)
+				if region_str.find('_') >= 0 :
+					transformed_str = underscoreToCamelCase(region_str, '_')
+				elif re.match('[a-z][a-z\d]*(?:[A-Z][a-z\d]*)?', region_str[0:1]):
+					transformed_str = camelCaseToPascal(region_str)
+				elif re.match('[A-Z][a-z\d]*(?:[A-Z][a-z\d]*)?', region_str[0:1]):
+					transformed_str = pascalToUnderscore(region_str)
 
-				view.replace(edit, region, transformedStr)
+				view.replace(edit, region, transformed_str)
