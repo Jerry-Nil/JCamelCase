@@ -6,6 +6,7 @@ import sublime_plugin
 import re
 
 '''
+下划线转小驼峰
 one_string: 输入的字符串
 space_character: 字符串的间隔符，以其做为分隔标志
 '''
@@ -22,6 +23,7 @@ def underscoreToCamelCase(one_string, space_character):
 
 	return hump_string
 
+# 小驼峰转大驼峰
 def camelCaseToPascal(input_str):
 	if len(input_str) == 1 :
 		return input_str.capitalize()
@@ -29,14 +31,17 @@ def camelCaseToPascal(input_str):
 	outputStr = input_str[0:1].capitalize() + input_str[1:]
 	return outputStr
 
+# 替换函数
 def toUnder(matched):
 	_str = str(matched.group('value'))
 	return _str.lower() + '_'
 
+# 大驼峰转下划线
 def pascalToUnderscore(input_str):
 	tmp_str = re.sub(r'(?P<value>[A-Z][a-z\d]*)', toUnder, input_str)
 	return tmp_str[0:len(tmp_str) - 1]
 
+# 插件类
 class JCamelCaseCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		view = self.view
